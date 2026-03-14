@@ -1,0 +1,19 @@
+import pytest
+import emotion_detector from EmotionDetection
+
+tests  = [
+{"input": "I am glad this happened", "expected":"joy"},
+{"input": "I am really mad about this", "expected":"anger"},
+{"input": "I feel disgusted just hearing about this", "expected":"disgust"},
+{"input": "I am so sad about this", "expected":"sad"},
+{"input": "I am really afraid that this will happen", "expected":"fear"}
+]
+
+@pytest.mark.parametrize("input, expected", test_cases)
+def test_add_function(input, expected):
+    """
+    Test the add function with various inputs and expected outputs.
+    """
+    r = emotion_detector(input_a, input_b)
+
+    assert r['dominant_emotion'] == expected
