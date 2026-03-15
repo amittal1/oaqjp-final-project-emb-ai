@@ -17,5 +17,5 @@ def test_emotion(input, expected):
     """
     res = emotion_detector(input)
     r = json.loads(res)
-    print(expected)
+    print(r)
     assert r.get('dominant_emotion') == expected
