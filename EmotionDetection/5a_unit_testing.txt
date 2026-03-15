@@ -1,19 +1,21 @@
 import pytest
 from EmotionDetection import emotion_detector
+import json
 
 tests  = [
-{"input": "I am glad this happened", "expected":"joy"},
-{"input": "I am really mad about this", "expected":"anger"},
-{"input": "I feel disgusted just hearing about this", "expected":"disgust"},
-{"input": "I am so sad about this", "expected":"sad"},
-{"input": "I am really afraid that this will happen", "expected":"fear"}
+("I am glad this happened", "joy"),
+("I am really mad about this", "anger"),
+("I feel disgusted just hearing about this", "disgust"),
+("I am so sad about this", "sadness"),
+("I am really afraid that this will happen", "fear"),
 ]
 
-@pytest.mark.parametrize("input,, expected", test_cases)
-def test_1(input, expected):
+@pytest.mark.parametrize("input, expected", tests)
+def test_emotion(input, expected):
     """
     Test the add function with various inputs and expected outputs.
     """
-    r = emotion_detector(input_a, input_b)
-
-    assert r['dominant_emotion'] == expected
+    res = emotion_detector(input)
+    r = json.loads(res)
+    print(expected)
+    assert r.get('dominant_emotion') == expected
